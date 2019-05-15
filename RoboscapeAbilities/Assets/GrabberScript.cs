@@ -16,7 +16,7 @@ public class GrabberScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -24,7 +24,7 @@ public class GrabberScript : MonoBehaviour
     {
 
         //If something should be grabbed you have to press the right mous button
-        if (Input.GetButtonDown("Fire2")){
+        if (Input.GetButtonDown("Hold")){
 
             //First check if the Player is already grabbing sth
 
@@ -45,19 +45,19 @@ public class GrabberScript : MonoBehaviour
                     if (extraStrength)
                     {
                         grabbableMass = 5f;
-                        
+
                     }
-                    
+
 
                     if (hit.collider.attachedRigidbody.mass <= grabbableMass)
                     {
                         grabbed = true;
                     }
-                    
-                    
+
+
 
                 }
-                
+
                 //grab
             }
             else if(grabbed)
