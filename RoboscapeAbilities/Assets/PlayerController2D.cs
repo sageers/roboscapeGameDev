@@ -13,7 +13,7 @@ public class PlayerController2D: MonoBehaviour
 
     void Start()
     {
-        
+
         direction = transform.localScale.x;
         posx = transform.position.x;
 
@@ -34,20 +34,24 @@ public class PlayerController2D: MonoBehaviour
         if (Input.GetButton("Jump"))
         {
             gameObject.transform.Translate(moveHorizontal * speed, jumpHeight, 0.0f);
+            
         }
 
         if (transform.position.x < posx)
         {
             transform.localScale = new Vector2(-direction, transform.localScale.y);
-
+            
         }
-        else
-        {
+        else if(transform.position.x > posx){
+
             transform.localScale = new Vector2(direction, transform.localScale.y);
+
+
         }
 
 
         posx = transform.position.x;
+        
     }
 
     // called when the cube hits the floor
