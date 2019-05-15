@@ -102,6 +102,7 @@ public class RoboArmScript : MonoBehaviour
             if (Input.GetKeyDown(greifarm_key))
             {
                 RobotController.roboterState = (int)RobotController.states.greifArm;
+                //roboter.
                 greifarmState = (int)greifarmStates.move;
                 handStartPosition = hand.transform.position;
                 hand.transform.position += new Vector3(armSpeed, 0, 0);
