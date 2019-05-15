@@ -103,6 +103,8 @@ public class RoboArmScript : MonoBehaviour
             {
                 RobotController.roboterState = (int)RobotController.states.greifArm;
                 //roboter.
+
+                //BLALALALALALAALALAL
                 greifarmState = (int)greifarmStates.move;
                 handStartPosition = hand.transform.position;
                 hand.transform.position += new Vector3(armSpeed, 0, 0);
