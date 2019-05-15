@@ -23,7 +23,7 @@ public class GrabberScript : MonoBehaviour
     {
 
         //If something should be grabbed you have to press the right mous button
-        if (Input.GetButtonDown("Fire2")){
+        if (Input.GetButtonDown("Hold")){
 
             //First check if the Player is already grabbing sth
 
@@ -59,7 +59,8 @@ public class GrabberScript : MonoBehaviour
                 
                 //grab
             }
-            else if(!Physics2D.OverlapPoint(holdPoint.position))
+            else if(grabbed)
+            //!Physics2D.OverlapPoint(holdPoint.position)
             {
                 grabbed = false;
 
