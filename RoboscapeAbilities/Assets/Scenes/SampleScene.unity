@@ -1128,6 +1128,7 @@ MonoBehaviour:
   hand: {fileID: 991089691}
   armElement: {fileID: 4326299376942864415, guid: a265b7f96aabf1b4eabb2d62cbc88e7a,
     type: 3}
+  roboterRigidbody: {fileID: 1265962872}
   armMaxLength: 200
   armSpeed: 0.04
 --- !u!1 &1020081649

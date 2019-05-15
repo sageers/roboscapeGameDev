@@ -18,6 +18,7 @@ public class RoboArmScript : MonoBehaviour
     public GameObject roboter;
     public GameObject hand;
     public GameObject armElement;
+    public Rigidbody2D roboterRigidbody;
 
     enum greifarmStates { move, reverse };
     int greifarmState;
@@ -102,9 +103,8 @@ public class RoboArmScript : MonoBehaviour
             if (Input.GetKeyDown(greifarm_key))
             {
                 RobotController.roboterState = (int)RobotController.states.greifArm;
-                //roboter.
-
-                //BLALALALALALAALALAL
+                roboterRigidbody.constraints = RigidbodyConstraints2D.FreezeAll;
+                
                 greifarmState = (int)greifarmStates.move;
                 handStartPosition = hand.transform.position;
                 hand.transform.position += new Vector3(armSpeed, 0, 0);
@@ -179,6 +179,7 @@ public class RoboArmScript : MonoBehaviour
                     hand.transform.position = handStartPosition;
                     hand.transform.rotation = Quaternion.Euler(0, 0, 0);
                     RobotController.roboterState = (int)RobotController.states.normal;
+                    roboterRigidbody.constraints = RigidbodyConstraints2D.FreezeRotation;
                 }
             }
             else if (Input.GetKeyUp(reverse_key))
