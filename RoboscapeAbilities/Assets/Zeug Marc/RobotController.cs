@@ -27,7 +27,7 @@ public class RobotController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("JumpTast1") && isGrounded)
+       /** if (Input.GetButtonDown("JumpTast1") && isGrounded)
         {
             jump = true;
         }
@@ -36,6 +36,7 @@ public class RobotController : MonoBehaviour
             jump = true;
         }
 
+    **/
     }
 
     void FixedUpdate()

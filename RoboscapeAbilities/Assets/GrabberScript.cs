@@ -44,9 +44,11 @@ public class GrabberScript : MonoBehaviour
                     if (extraStrength)
                     {
                         grabbableMass = 5f;
+                        
                     }
                     
-                    if(hit.collider.attachedRigidbody.mass <= grabbableMass)
+
+                    if (hit.collider.attachedRigidbody.mass <= grabbableMass)
                     {
                         grabbed = true;
                     }
