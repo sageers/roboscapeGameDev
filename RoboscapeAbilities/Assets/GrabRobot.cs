@@ -12,6 +12,13 @@ public class GrabRobot : MonoBehaviour
     protected RaycastHit2D hit;
     public Transform holdPoint;
     public bool extraStrength = false;
+
+    static int grabbedObject = -1;
+    public static int getGrabbedObject
+    {
+        get{ return grabbedObject; }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -73,6 +80,11 @@ public class GrabRobot : MonoBehaviour
         if (grabbed)
         {
             hit.collider.gameObject.transform.position = holdPoint.position;
+            grabbedObject =  hit.collider.gameObject.GetInstanceID();
+        }
+        else
+        {
+            grabbedObject = -1;
         }
     }
 
