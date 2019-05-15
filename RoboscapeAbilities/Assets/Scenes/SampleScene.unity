@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -220,7 +220,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1265962869}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &97509131
 SpriteRenderer:
@@ -298,7 +298,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1265962869}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &170076733
 GameObject:
@@ -1179,6 +1179,7 @@ GameObject:
   - component: {fileID: 1265962872}
   - component: {fileID: 1265962871}
   - component: {fileID: 1265962870}
+  - component: {fileID: 1265962873}
   m_Layer: 9
   m_Name: Robot
   m_TagString: Untagged
@@ -1197,6 +1198,7 @@ Transform:
   m_LocalPosition: {x: -4.38, y: 0.57, z: 0.058024406}
   m_LocalScale: {x: 0.35, y: 0.35, z: 1}
   m_Children:
+  - {fileID: 1734568405}
   - {fileID: 97509130}
   - {fileID: 1465032743}
   - {fileID: 1665789214}
@@ -1263,6 +1265,23 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &1265962873
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1265962868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 885bb68d66a17b14aaf06ac0e02a1550, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grabbed: 0
+  distance: 2
+  throwForce: 0
+  holdPoint: {fileID: 1734568405}
+  extraStrength: 0
 --- !u!1001 &1294790077
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1396,7 +1415,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0.05
-  jumpHeight: 0.15
+  jumpHeight: 0.1
 --- !u!4 &1347039004
 Transform:
   m_ObjectHideFlags: 0
@@ -1663,7 +1682,7 @@ Transform:
   - {fileID: 1032147197}
   - {fileID: 534754511}
   m_Father: {fileID: 1265962869}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!70 &1465032744
 CapsuleCollider2D:
@@ -1809,7 +1828,37 @@ Transform:
   - {fileID: 991089692}
   - {fileID: 17214839}
   m_Father: {fileID: 1265962869}
-  m_RootOrder: 2
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1734568404
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1734568405}
+  m_Layer: 0
+  m_Name: Holdpoint
+  m_TagString: Untagged
+  m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1734568405
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1734568404}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.43, y: 3.18, z: -0.031071141}
+  m_LocalScale: {x: 2.0950284, y: 2.0950284, z: 0.73326}
+  m_Children: []
+  m_Father: {fileID: 1265962869}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1956603000
 GameObject:
