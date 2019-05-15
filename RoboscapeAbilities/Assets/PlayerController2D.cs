@@ -59,4 +59,6 @@ public class PlayerController2D: MonoBehaviour
     {
        // Debug.Log("OnCollisionEnter2D");
     }
+
+    
 }

@@ -12,6 +12,7 @@ public class GrabberScript : MonoBehaviour
     protected RaycastHit2D hit;
     public Transform holdPoint;
     public bool extraStrength = false;
+    public Sprite playerSprite;
     // Start is called before the first frame update
     void Start()
     {
@@ -59,7 +60,7 @@ public class GrabberScript : MonoBehaviour
                 
                 //grab
             }
-            else if(!Physics2D.OverlapPoint(holdPoint.position))
+            else if(grabbed)
             {
                 grabbed = false;
 
@@ -81,5 +82,16 @@ public class GrabberScript : MonoBehaviour
     {
         Gizmos.color = Color.green;
         Gizmos.DrawLine(transform.position, transform.position + Vector3.right * transform.localScale.x * distance);
+    }
+
+    //collect buff extra strenght
+    void OnTriggerEnter2D(Collider2D col1)
+    {
+        if (col1.gameObject.CompareTag("buff"))
+        {
+            col1.gameObject.SetActive(false);
+            extraStrength = true;
+
+        }
     }
 }
