@@ -17,6 +17,16 @@ public class RobotController : MonoBehaviour
     private bool isGrounded = false;
     private bool jump = false;
     // Start is called before the first frame update
+
+    //Lucas Kram:
+    public enum states { normal, greifArm };
+    static int state = (int)states.normal;
+    public static int roboterState
+    {
+        get { return state; }
+        set { state = value; }
+    }
+
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
@@ -41,23 +51,26 @@ public class RobotController : MonoBehaviour
 
     void FixedUpdate()
     {
-        //float hor = Input.GetAxis("Horizontal1");
-        float hor = Input.GetAxis("Horizontal2");
-        anim.SetFloat("Speed", Mathf.Abs(hor));
-        rb2d.velocity = new Vector2(hor * maxSpeed, rb2d.velocity.y);
-
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, 0.15f, whatIsGround);
-        anim.SetBool("isGrounded", isGrounded);
-
-        if ((hor > 0 && !lookingRight) || (hor < 0 && lookingRight))
+        if (state == (int)states.normal)
         {
-            Flip();
-        }
+            //float hor = Input.GetAxis("Horizontal1");
+            float hor = Input.GetAxis("Horizontal2");
+            anim.SetFloat("Speed", Mathf.Abs(hor));
+            rb2d.velocity = new Vector2(hor * maxSpeed, rb2d.velocity.y);
 
-        if (jump)
-        {
-            rb2d.AddForce(new Vector2(0, jumpForce));
-            jump = false;
+            isGrounded = Physics2D.OverlapCircle(groundCheck.position, 0.15f, whatIsGround);
+            anim.SetBool("isGrounded", isGrounded);
+
+            if ((hor > 0 && !lookingRight) || (hor < 0 && lookingRight))
+            {
+                Flip();
+            }
+
+            if (jump)
+            {
+                rb2d.AddForce(new Vector2(0, jumpForce));
+                jump = false;
+            }
         }
     }
 
