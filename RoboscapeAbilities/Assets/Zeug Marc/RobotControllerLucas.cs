@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RobotController : MonoBehaviour
+public class RobotControllerLucas : MonoBehaviour
 {
     public float maxSpeed = 4;
     public float jumpForce = 200;

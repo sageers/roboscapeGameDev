@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GrabRobot : MonoBehaviour
+public class GrabRobotLucas : MonoBehaviour
 {
     //https://www.youtube.com/watch?v=SoBdvBTZqhw
 

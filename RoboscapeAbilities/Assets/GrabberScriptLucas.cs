@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GrabberScript : MonoBehaviour
+public class GrabberScriptLucas : MonoBehaviour
 {
     //https://www.youtube.com/watch?v=SoBdvBTZqhw
 

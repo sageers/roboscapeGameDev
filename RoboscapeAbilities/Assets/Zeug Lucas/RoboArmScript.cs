@@ -98,11 +98,11 @@ public class RoboArmScript : MonoBehaviour
 
     void Update()
     {
-        if (RobotController.roboterState == (int)RobotController.states.normal)
+        if (RobotControllerLucas.roboterState == (int)RobotControllerLucas.states.normal)
         {
             if (Input.GetKeyDown(greifarm_key))
             {
-                RobotController.roboterState = (int)RobotController.states.greifArm;
+                RobotControllerLucas.roboterState = (int)RobotControllerLucas.states.greifArm;
                 roboterRigidbody.constraints = RigidbodyConstraints2D.FreezeAll;
                 
                 greifarmState = (int)greifarmStates.move;
@@ -115,7 +115,7 @@ public class RoboArmScript : MonoBehaviour
 
         }
 
-        else if (RobotController.roboterState == (int)RobotController.states.greifArm)
+        else if (RobotControllerLucas.roboterState == (int)RobotControllerLucas.states.greifArm)
         {
             if (armCurrentLength < armMaxLength && greifarmState == (int)greifarmStates.move)
             {
@@ -178,7 +178,7 @@ public class RoboArmScript : MonoBehaviour
                 {
                     hand.transform.position = handStartPosition;
                     hand.transform.rotation = Quaternion.Euler(0, 0, 0);
-                    RobotController.roboterState = (int)RobotController.states.normal;
+                    RobotControllerLucas.roboterState = (int)RobotControllerLucas.states.normal;
                     roboterRigidbody.constraints = RigidbodyConstraints2D.FreezeRotation;
                 }
             }
