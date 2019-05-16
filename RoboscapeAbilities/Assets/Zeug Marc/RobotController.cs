@@ -18,7 +18,7 @@ public class RobotController : MonoBehaviour
     private bool jump = false;
     // Start is called before the first frame update
 
-    //Lucas Kram:
+    //Lucas Kram:***************************************
     public enum states { normal, greifArm };
     static int state = (int)states.normal;
     public static int roboterState
@@ -26,6 +26,8 @@ public class RobotController : MonoBehaviour
         get { return state; }
         set { state = value; }
     }
+    //******************************************************
+    
 
     void Start()
     {
@@ -51,7 +53,7 @@ public class RobotController : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (state == (int)states.normal)
+        if (state == (int)states.normal)// <- Lucas if-case***********************************
         {
             //float hor = Input.GetAxis("Horizontal1");
             float hor = Input.GetAxis("Horizontal2");
@@ -71,7 +73,7 @@ public class RobotController : MonoBehaviour
                 rb2d.AddForce(new Vector2(0, jumpForce));
                 jump = false;
             }
-        }
+        }// ¯\_( ͡ᵔ ͜ʖ ͡ᵔ ) Lucas Klammer zu *****************************
     }
 
     public void Flip()
