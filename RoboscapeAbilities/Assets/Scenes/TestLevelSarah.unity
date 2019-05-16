@@ -2254,7 +2254,7 @@ MonoBehaviour:
   distance: 2
   throwForce: 0
   holdPoint: {fileID: 980538091}
-  extraStrength: 1
+  extraStrength: 0
   playerSprite: {fileID: 21300000, guid: 0e2ec5122ea52154798e4a7fe8e55219, type: 3}
 --- !u!1 &1430685433
 GameObject:
