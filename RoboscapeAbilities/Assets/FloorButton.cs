@@ -8,8 +8,9 @@ public class FloorButton : MonoBehaviour
     protected bool pressed = false;
     protected Rigidbody2D rb2d;
     protected SpriteRenderer spriteRend;
+    public GameObject useObject;
 
-
+   
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
@@ -25,6 +26,9 @@ public class FloorButton : MonoBehaviour
             Debug.Log("OnCollisionEnter2D");
             spriteRend.color = Color.green;
             pressed = true;
+
+            useObject.transform.position = new Vector3(14.43f, -1f, 0f);
+
         }
         
     }
