@@ -6,6 +6,8 @@ TagManager:
   tags:
   - grabbable
   - buff
+  - scientist
+  - robot
   layers:
   - Default
   - TransparentFX
@@ -17,7 +19,7 @@ TagManager:
   - 
   - PostProcessing
   - Robot
-  - 
+  - Scientist
   - 
   - 
   - 
@@ -45,4 +47,7 @@ TagManager:
     locked: 0
   - name: Robot
     uniqueID: 1631598425
+    locked: 0
+  - name: Scientist
+    uniqueID: 3004000745
     locked: 0
