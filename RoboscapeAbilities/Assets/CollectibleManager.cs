@@ -31,6 +31,6 @@ public class CollectibleManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        PotionText.text = "Potions: " + collectedPotions + " / " + numberOfPotions;
+        PotionText.text = collectedPotions + "/" + numberOfPotions;
     }
 }
