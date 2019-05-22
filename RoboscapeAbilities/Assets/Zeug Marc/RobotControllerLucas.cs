@@ -14,7 +14,7 @@ public class RobotControllerLucas : MonoBehaviour
 
     private Rigidbody2D rb2d;
     private Animator anim;
-    private bool isGrounded = false;
+    public bool isGrounded = false;
     private bool jump = false;
     // Start is called before the first frame update
 
