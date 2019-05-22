@@ -14,8 +14,27 @@ public class All_FloorButton : MonoBehaviour
         spriteRend = GetComponent<SpriteRenderer>();
     }
 
+    void OnTriggerStay2D(Collider2D col1)
+    {
 
-    void OnCollisionEnter2D(Collision2D col)
+        
+            Debug.Log("TriggerStay: All");
+            spriteRend.color = Color.green;
+            pressed = true;
+        
+    }
+
+    void OnTriggerExit2D(Collider2D col2)
+    {
+
+            Debug.Log("TriggerExit: All");
+            spriteRend.color = Color.white;
+            pressed = false;
+        
+
+    }
+
+    /*void OnCollisionEnter2D(Collision2D col)
     {
         if (!pressed)
         {
@@ -28,7 +47,7 @@ public class All_FloorButton : MonoBehaviour
 
         }
 
-    }
+    }*/
 
 
 }

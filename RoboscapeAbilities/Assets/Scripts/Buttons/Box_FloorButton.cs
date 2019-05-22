@@ -13,8 +13,37 @@ public class Box_FloorButton : MonoBehaviour
     {        
         spriteRend = GetComponent<SpriteRenderer>();
     }
-    
-    void OnCollisionEnter2D(Collision2D col)
+
+
+    void OnTriggerStay2D(Collider2D col1)
+    {
+
+        if (col1.gameObject.tag == "grabbable")
+        {
+
+            Debug.Log("TriggerStay: Grabbable");
+            spriteRend.color = Color.green;
+            pressed = true;
+
+
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D col2)
+    {
+        //
+        if (col2.gameObject.tag == "grabbable")
+        {
+
+            Debug.Log("TriggerExit: Grabbable");
+            spriteRend.color = Color.white;
+            pressed = false;
+
+
+        }
+
+    }
+    /*void OnCollisionEnter2D(Collision2D col)
     {
         if (!pressed && col.gameObject.tag == "grabbable")
         {
@@ -28,7 +57,7 @@ public class Box_FloorButton : MonoBehaviour
 
         }
 
-    }
+    }*/
 
 
 }

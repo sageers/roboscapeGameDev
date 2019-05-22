@@ -4480,6 +4480,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Button box
       objectReference: {fileID: 0}
+    - target: {fileID: 125909663893315766, guid: b9fb29a4f49fe874ead3583b2d9f908c,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b9fb29a4f49fe874ead3583b2d9f908c, type: 3}
 --- !u!1001 &974663485126597097
@@ -4549,6 +4554,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Button all
       objectReference: {fileID: 0}
+    - target: {fileID: 974663485407544545, guid: 3908bf4e518d29d4881b241aced80319,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3908bf4e518d29d4881b241aced80319, type: 3}
 --- !u!1001 &1756594848587687328
@@ -4617,6 +4627,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Button scientist
+      objectReference: {fileID: 0}
+    - target: {fileID: 1756594847957749697, guid: aa9a71dd0ca75864b902686f0a59b1bf,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aa9a71dd0ca75864b902686f0a59b1bf, type: 3}
@@ -4761,6 +4776,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Button robot
       objectReference: {fileID: 0}
+    - target: {fileID: 3218554389137024229, guid: dbaf33aa86141d546bc634af58bae76c,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dbaf33aa86141d546bc634af58bae76c, type: 3}
 --- !u!1001 &5414172691443260590
@@ -4904,6 +4924,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5468322296122667605, guid: 575ca852100f9d848aae31cdd9cc96be,
+        type: 3}
+      propertyPath: m_TagString
+      value: robot
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 575ca852100f9d848aae31cdd9cc96be, type: 3}
