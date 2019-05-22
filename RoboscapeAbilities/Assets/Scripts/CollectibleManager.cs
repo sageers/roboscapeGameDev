@@ -11,7 +11,11 @@ public class CollectibleManager : MonoBehaviour
     public int numberOfPotions;
     public int collectedPotions;
 
+    public int numberOfGears;
+    public int collectedGears;
+
     public Text PotionText;
+    public Text GearText;
 
     void Awake()
     {
@@ -32,5 +36,12 @@ public class CollectibleManager : MonoBehaviour
     void Update()
     {
         PotionText.text = collectedPotions + "/" + numberOfPotions;
+
+        GearText.text = collectedGears + "/" + numberOfGears;
+        
+        if(collectedPotions == numberOfPotions)
+        {
+            GrabberScriptLucas.extraStrength = true;
+        }
     }
 }

@@ -6,12 +6,12 @@ public class GrabberScriptLucas : MonoBehaviour
 {
     //https://www.youtube.com/watch?v=SoBdvBTZqhw
 
-    public bool grabbed;
+    public static bool grabbed;
     public float distance = 2f;
-    public float throwForce;
+    public static float throwForce;
     protected RaycastHit2D hit;
     public Transform holdPoint;
-    public bool extraStrength = false;
+    public static bool extraStrength = false;
     public Sprite playerSprite;
 
     //Lucas Kram: **********************************
@@ -19,6 +19,10 @@ public class GrabberScriptLucas : MonoBehaviour
     public static int getGrabbedObject
     {
         get { return grabbedObject; }
+    }
+    public static void setGrabbedObject(int idGrabbedObject)
+    {
+        grabbedObject = idGrabbedObject;
     }
     //***********************************************
 
@@ -73,10 +77,20 @@ public class GrabberScriptLucas : MonoBehaviour
             {
                 grabbed = false;
 
-                if (hit.collider.gameObject.GetComponent<Rigidbody2D>() != null)
+                if(grabbedObject != 1)
                 {
-                    hit.collider.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(transform.localScale.x, 1) * throwForce;
+                    if (hit.collider.gameObject.GetComponent<Rigidbody2D>() != null)
+                    {
+                        hit.collider.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(transform.localScale.x, 1) * throwForce;
+                    }
                 }
+                else
+                {
+                    //absetzen von Tränken hier irgendwie
+                    Collectible.grabbedCollectible = false;
+                }
+
+                
                 //throw
             }
         }
@@ -84,8 +98,12 @@ public class GrabberScriptLucas : MonoBehaviour
         //Lucas Kram: Der Großteil dieses if-cases ist neu ************
         if (grabbed)
         {
-            hit.collider.gameObject.transform.position = holdPoint.position;
-            grabbedObject = hit.collider.gameObject.GetInstanceID();
+            if (grabbedObject != 1)
+            {
+                hit.collider.gameObject.transform.position = holdPoint.position;
+                grabbedObject = hit.collider.gameObject.GetInstanceID();
+            }
+            
         }
         else {
             grabbedObject = -1;
@@ -100,7 +118,7 @@ public class GrabberScriptLucas : MonoBehaviour
     }
 
     //collect buff extra strenght
-    void OnTriggerEnter2D(Collider2D col1)
+    /*void OnTriggerEnter2D(Collider2D col1)
     {
         if (col1.gameObject.CompareTag("buff"))
         {
@@ -108,5 +126,5 @@ public class GrabberScriptLucas : MonoBehaviour
             extraStrength = true;
 
         }
-    }
+    }*/
 }
