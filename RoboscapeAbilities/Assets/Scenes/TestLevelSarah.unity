@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -54,7 +54,7 @@ LightmapSettings:
     m_EnableBakedLightmaps: 1
     m_EnableRealtimeLightmaps: 0
   m_LightmapEditorSettings:
-    serializedVersion: 12
+    serializedVersion: 10
     m_Resolution: 2
     m_BakeResolution: 10
     m_AtlasSize: 512
@@ -62,7 +62,6 @@ LightmapSettings:
     m_AOMaxDistance: 1
     m_CompAOExponent: 1
     m_CompAOExponentDirect: 0
-    m_ExtractAmbientOcclusion: 0
     m_Padding: 2
     m_LightmapParameters: {fileID: 0}
     m_LightmapsBakeMode: 1
@@ -77,16 +76,10 @@ LightmapSettings:
     m_PVRDirectSampleCount: 32
     m_PVRSampleCount: 256
     m_PVRBounces: 2
-    m_PVREnvironmentSampleCount: 256
-    m_PVREnvironmentReferencePointCount: 2048
-    m_PVRFilteringMode: 2
-    m_PVRDenoiserTypeDirect: 0
-    m_PVRDenoiserTypeIndirect: 0
-    m_PVRDenoiserTypeAO: 0
     m_PVRFilterTypeDirect: 0
     m_PVRFilterTypeIndirect: 0
     m_PVRFilterTypeAO: 0
-    m_PVREnvironmentMIS: 0
+    m_PVRFilteringMode: 2
     m_PVRCulling: 1
     m_PVRFilteringGaussRadiusDirect: 1
     m_PVRFilteringGaussRadiusIndirect: 5
@@ -94,8 +87,7 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaDirect: 0.5
     m_PVRFilteringAtrousPositionSigmaIndirect: 2
     m_PVRFilteringAtrousPositionSigmaAO: 1
-    m_ExportTrainingData: 0
-    m_TrainingDataDestination: TrainingData
+    m_ShowResolutionOverlay: 1
   m_LightingDataAsset: {fileID: 0}
   m_UseShadowmask: 1
 --- !u!196 &4
@@ -512,13 +504,12 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 170076733}
   m_Enabled: 1
-  serializedVersion: 9
+  serializedVersion: 8
   m_Type: 1
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
-  m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
     m_Type: 2
@@ -528,24 +519,6 @@ Light:
     m_Bias: 0.05
     m_NormalBias: 0.4
     m_NearPlane: 0.2
-    m_CullingMatrixOverride:
-      e00: 1
-      e01: 0
-      e02: 0
-      e03: 0
-      e10: 0
-      e11: 1
-      e12: 0
-      e13: 0
-      e20: 0
-      e21: 0
-      e22: 1
-      e23: 0
-      e30: 0
-      e31: 0
-      e32: 0
-      e33: 1
-    m_UseCullingMatrixOverride: 0
   m_Cookie: {fileID: 0}
   m_DrawHalo: 0
   m_Flare: {fileID: 0}
@@ -553,15 +526,12 @@ Light:
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_RenderingLayerMask: 1
   m_Lightmapping: 1
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
-  m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
 --- !u!4 &170076735
@@ -1020,7 +990,6 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -1135,10 +1104,9 @@ Camera:
   m_ClearFlags: 2
   m_BackGroundColor: {r: 0.3032663, g: 0.4243049, b: 0.4433962, a: 0.8235294}
   m_projectionMatrixMode: 1
-  m_GateFitMode: 2
-  m_FOVAxisMode: 0
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
+  m_GateFitMode: 2
   m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
@@ -1372,7 +1340,6 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -1656,7 +1623,6 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -1763,7 +1729,6 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -1888,6 +1853,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1190250738}
     m_Modifications:
+    - target: {fileID: 1222806087177142, guid: f96c949e10c2c014883607b5bf01b340, type: 3}
+      propertyPath: m_Name
+      value: DemoCrate (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1222806087177142, guid: f96c949e10c2c014883607b5bf01b340, type: 3}
+      propertyPath: m_TagString
+      value: grabbable
+      objectReference: {fileID: 0}
     - target: {fileID: 4237855052870848, guid: f96c949e10c2c014883607b5bf01b340, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4.5940137
@@ -1943,14 +1916,6 @@ PrefabInstance:
     - target: {fileID: 4237855052870848, guid: f96c949e10c2c014883607b5bf01b340, type: 3}
       propertyPath: m_LocalScale.z
       value: 0.15973353
-      objectReference: {fileID: 0}
-    - target: {fileID: 1222806087177142, guid: f96c949e10c2c014883607b5bf01b340, type: 3}
-      propertyPath: m_Name
-      value: DemoCrate (2)
-      objectReference: {fileID: 0}
-    - target: {fileID: 1222806087177142, guid: f96c949e10c2c014883607b5bf01b340, type: 3}
-      propertyPath: m_TagString
-      value: grabbable
       objectReference: {fileID: 0}
     - target: {fileID: 61781244883272318, guid: f96c949e10c2c014883607b5bf01b340,
         type: 3}
@@ -2183,7 +2148,6 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -2254,6 +2218,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 974368012}
     m_Modifications:
+    - target: {fileID: 2243432268682315345, guid: 28944e7ccb4044c42ad749b1e26fc2a6,
+        type: 3}
+      propertyPath: m_Name
+      value: buff strength
+      objectReference: {fileID: 0}
     - target: {fileID: 2243432268682315348, guid: 28944e7ccb4044c42ad749b1e26fc2a6,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2308,11 +2277,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2243432268682315345, guid: 28944e7ccb4044c42ad749b1e26fc2a6,
-        type: 3}
-      propertyPath: m_Name
-      value: buff strength
       objectReference: {fileID: 0}
     - target: {fileID: 127863661245877802, guid: 28944e7ccb4044c42ad749b1e26fc2a6,
         type: 3}
@@ -2423,7 +2387,6 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -2503,7 +2466,6 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -2554,6 +2516,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1190250738}
     m_Modifications:
+    - target: {fileID: 1222806087177142, guid: f96c949e10c2c014883607b5bf01b340, type: 3}
+      propertyPath: m_Name
+      value: DemoCrate
+      objectReference: {fileID: 0}
+    - target: {fileID: 1222806087177142, guid: f96c949e10c2c014883607b5bf01b340, type: 3}
+      propertyPath: m_TagString
+      value: grabbable
+      objectReference: {fileID: 0}
     - target: {fileID: 4237855052870848, guid: f96c949e10c2c014883607b5bf01b340, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.2340136
@@ -2609,14 +2579,6 @@ PrefabInstance:
     - target: {fileID: 4237855052870848, guid: f96c949e10c2c014883607b5bf01b340, type: 3}
       propertyPath: m_LocalScale.z
       value: 0.15973353
-      objectReference: {fileID: 0}
-    - target: {fileID: 1222806087177142, guid: f96c949e10c2c014883607b5bf01b340, type: 3}
-      propertyPath: m_Name
-      value: DemoCrate
-      objectReference: {fileID: 0}
-    - target: {fileID: 1222806087177142, guid: f96c949e10c2c014883607b5bf01b340, type: 3}
-      propertyPath: m_TagString
-      value: grabbable
       objectReference: {fileID: 0}
     - target: {fileID: 61781244883272318, guid: f96c949e10c2c014883607b5bf01b340,
         type: 3}
@@ -3000,7 +2962,6 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -3098,7 +3059,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 807, y: -268.7}
+  m_AnchoredPosition: {x: -825, y: -268.7}
   m_SizeDelta: {x: 151.9, y: 95.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1551344866
@@ -3150,6 +3111,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1190250738}
     m_Modifications:
+    - target: {fileID: 1222806087177142, guid: f96c949e10c2c014883607b5bf01b340, type: 3}
+      propertyPath: m_Name
+      value: DemoCrate (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1222806087177142, guid: f96c949e10c2c014883607b5bf01b340, type: 3}
+      propertyPath: m_TagString
+      value: grabbable
+      objectReference: {fileID: 0}
+    - target: {fileID: 1222806087177142, guid: f96c949e10c2c014883607b5bf01b340, type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 4237855052870848, guid: f96c949e10c2c014883607b5bf01b340, type: 3}
       propertyPath: m_LocalPosition.x
       value: 10.5240135
@@ -3205,18 +3178,6 @@ PrefabInstance:
     - target: {fileID: 4237855052870848, guid: f96c949e10c2c014883607b5bf01b340, type: 3}
       propertyPath: m_LocalScale.z
       value: 0.1930502
-      objectReference: {fileID: 0}
-    - target: {fileID: 1222806087177142, guid: f96c949e10c2c014883607b5bf01b340, type: 3}
-      propertyPath: m_Name
-      value: DemoCrate (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 1222806087177142, guid: f96c949e10c2c014883607b5bf01b340, type: 3}
-      propertyPath: m_TagString
-      value: grabbable
-      objectReference: {fileID: 0}
-    - target: {fileID: 1222806087177142, guid: f96c949e10c2c014883607b5bf01b340, type: 3}
-      propertyPath: m_Icon
-      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 61781244883272318, guid: f96c949e10c2c014883607b5bf01b340,
         type: 3}
@@ -3390,7 +3351,6 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -3471,7 +3431,6 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -3717,7 +3676,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -825.35, y: -268.69995}
+  m_AnchoredPosition: {x: 810, y: -268.69995}
   m_SizeDelta: {x: 151.9, y: 95.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1757096352
@@ -3831,7 +3790,6 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -4420,6 +4378,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1344067678}
     m_Modifications:
+    - target: {fileID: 125909663893315760, guid: b9fb29a4f49fe874ead3583b2d9f908c,
+        type: 3}
+      propertyPath: m_Name
+      value: Button box
+      objectReference: {fileID: 0}
     - target: {fileID: 125909663893315764, guid: b9fb29a4f49fe874ead3583b2d9f908c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4475,11 +4438,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 125909663893315760, guid: b9fb29a4f49fe874ead3583b2d9f908c,
-        type: 3}
-      propertyPath: m_Name
-      value: Button box
-      objectReference: {fileID: 0}
     - target: {fileID: 125909663893315766, guid: b9fb29a4f49fe874ead3583b2d9f908c,
         type: 3}
       propertyPath: m_IsTrigger
@@ -4494,6 +4452,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1344067678}
     m_Modifications:
+    - target: {fileID: 974663485407544559, guid: 3908bf4e518d29d4881b241aced80319,
+        type: 3}
+      propertyPath: m_Name
+      value: Button all
+      objectReference: {fileID: 0}
     - target: {fileID: 974663485407544547, guid: 3908bf4e518d29d4881b241aced80319,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4549,11 +4512,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 974663485407544559, guid: 3908bf4e518d29d4881b241aced80319,
-        type: 3}
-      propertyPath: m_Name
-      value: Button all
-      objectReference: {fileID: 0}
     - target: {fileID: 974663485407544545, guid: 3908bf4e518d29d4881b241aced80319,
         type: 3}
       propertyPath: m_IsTrigger
@@ -4568,6 +4526,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1344067678}
     m_Modifications:
+    - target: {fileID: 1756594847957749759, guid: aa9a71dd0ca75864b902686f0a59b1bf,
+        type: 3}
+      propertyPath: m_Name
+      value: Button scientist
+      objectReference: {fileID: 0}
     - target: {fileID: 1756594847957749699, guid: aa9a71dd0ca75864b902686f0a59b1bf,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4623,11 +4586,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1756594847957749759, guid: aa9a71dd0ca75864b902686f0a59b1bf,
-        type: 3}
-      propertyPath: m_Name
-      value: Button scientist
-      objectReference: {fileID: 0}
     - target: {fileID: 1756594847957749697, guid: aa9a71dd0ca75864b902686f0a59b1bf,
         type: 3}
       propertyPath: m_IsTrigger
@@ -4642,6 +4600,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 974368012}
     m_Modifications:
+    - target: {fileID: 2243432268682315345, guid: 28944e7ccb4044c42ad749b1e26fc2a6,
+        type: 3}
+      propertyPath: m_Name
+      value: buff strength
+      objectReference: {fileID: 0}
     - target: {fileID: 2243432268682315348, guid: 28944e7ccb4044c42ad749b1e26fc2a6,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4697,11 +4660,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2243432268682315345, guid: 28944e7ccb4044c42ad749b1e26fc2a6,
-        type: 3}
-      propertyPath: m_Name
-      value: buff strength
-      objectReference: {fileID: 0}
     - target: {fileID: 127863661245877802, guid: 28944e7ccb4044c42ad749b1e26fc2a6,
         type: 3}
       propertyPath: holdPoint
@@ -4716,6 +4674,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1344067678}
     m_Modifications:
+    - target: {fileID: 3218554389137024219, guid: dbaf33aa86141d546bc634af58bae76c,
+        type: 3}
+      propertyPath: m_Name
+      value: Button robot
+      objectReference: {fileID: 0}
     - target: {fileID: 3218554389137024231, guid: dbaf33aa86141d546bc634af58bae76c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4770,11 +4733,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3218554389137024219, guid: dbaf33aa86141d546bc634af58bae76c,
-        type: 3}
-      propertyPath: m_Name
-      value: Button robot
       objectReference: {fileID: 0}
     - target: {fileID: 3218554389137024229, guid: dbaf33aa86141d546bc634af58bae76c,
         type: 3}
