@@ -7,6 +7,7 @@ public class RoboFloatv2 : MonoBehaviour
     public float speed;
     public float maxSpeed;
     public float acc;
+    public float groundAcc;
     public float fricSlow;
 
     public float floatingHeight;
@@ -20,7 +21,8 @@ public class RoboFloatv2 : MonoBehaviour
 
     public float dist;
     public float distThresh;
-    public float rayCastOffSetX;
+    public float rayCastOffSetX1;
+    public float rayCastOffSetX2;
     public float rayCastOffSetY;
 
     public float frequency;
@@ -38,11 +40,12 @@ public class RoboFloatv2 : MonoBehaviour
         speed = 0; //Horizontale Geschwindigkeit
         maxSpeed = 4; //Horizontale Geschwindigkeitsbegrenzung
         acc = 4; //Horizontale Beschleunigung
+        groundAcc = acc / 10; //Horizontale Beschleunigung bei Berührung des Bodens
         fricSlow = 3; //Horizontale Verlangsamung, sobald nicht mehr beschleunigt wird
 
-        upSpeed = 0; //Vertikale Geschwindigkeit
         floatingHeight = 2; //Höhe, ab der die Triebwerksleistung nachlässt
-        engineAcc = 13f; //Vertikale Beschleunigung
+        engineAcc = 13; //Vertikale Beschleunigung
+        upSpeed = 0; //Vertikale Geschwindigkeit
         maxUpSpeed = 3; //Vertikale Geschwindigkeitsbegrenzung
 
         gravity = 9.81f;
@@ -50,7 +53,8 @@ public class RoboFloatv2 : MonoBehaviour
         engineOn = false;
 
         distThresh = 0.05f;
-        rayCastOffSetX = bottomCollider.bounds.size.x / 2;
+        rayCastOffSetX1 = bottomCollider.bounds.size.x /4;
+        rayCastOffSetX2 = bottomCollider.bounds.size.x /1.5f;
         rayCastOffSetY = -2 * bottomCollider.bounds.size.y; //Notwendig, damit der RayCast nicht die Hitbox des eigenen Sprites trifft.
 
         frequency = 1.5f; //Frequenz der Schwingung während des Schwebens
@@ -58,6 +62,8 @@ public class RoboFloatv2 : MonoBehaviour
 
         thisRigidbody = GetComponent<Rigidbody2D>();
         thisRigidbody.gravityScale = 0;
+
+        Physics2D.queriesHitTriggers = false;
     }
 
     // Update is called once per frame
@@ -70,9 +76,6 @@ public class RoboFloatv2 : MonoBehaviour
         SideMovement();
 
         MoveSprite();
-
-        //Debug.Log("Dist: " + dist);
-        //Debug.Log("upSpeed: " + upSpeed);
     }
 
     void MoveSprite()
@@ -141,14 +144,30 @@ public class RoboFloatv2 : MonoBehaviour
 
     private RaycastHit2D CheckRaycast()
     {
-        Vector2 startingPosition = new Vector2(transform.position.x + rayCastOffSetX, transform.position.y + rayCastOffSetY);
+        Vector2 startingPosition1 = new Vector2(transform.position.x + rayCastOffSetX1, transform.position.y + rayCastOffSetY);
+        Vector2 startingPosition2 = new Vector2(transform.position.x - rayCastOffSetX2, transform.position.y + rayCastOffSetY);
 
-        return Physics2D.Raycast(startingPosition, new Vector2(0, -1), 10000);
+        RaycastHit2D hit1 = Physics2D.Raycast(startingPosition1, new Vector2(0, -1));
+        RaycastHit2D hit2 = Physics2D.Raycast(startingPosition2, new Vector2(0, -1));
+
+        Debug.Log("Distance: " + hit1.distance + " | " + hit2.distance);
+
+        Debug.DrawLine(startingPosition1, hit1.point, Color.green, 0.5f); //Need to enable "Gizmos" in scene view, top right corner, in order to be visible.
+        Debug.DrawLine(startingPosition2, hit2.point, Color.green, 0.5f);
+
+        if (hit1.distance > hit2.distance)
+        {
+            return hit1;
+        }
+        else
+        {
+            return hit2;
+        }
     }
 
     void SideMovement()
     {
-        if (Input.GetAxis("Horizontal2") != 0 && dist > distThresh)
+        if (Input.GetAxis("Horizontal2") != 0)
         {
             if (Input.GetAxis("Horizontal2") > 0)
             {
@@ -158,7 +177,14 @@ public class RoboFloatv2 : MonoBehaviour
                 }
                 else
                 {
-                    CalcSpeed(acc);
+                    if(dist < distThresh)
+                    {
+                        CalcSpeed(groundAcc);
+                    }
+                    else
+                    {
+                        CalcSpeed(acc);
+                    }
                 }
 
                 if(!lookingRight)
@@ -175,7 +201,14 @@ public class RoboFloatv2 : MonoBehaviour
                 }
                 else
                 {
-                    CalcSpeed(-acc);
+                    if (dist < distThresh)
+                    {
+                        CalcSpeed(-groundAcc);
+                    }
+                    else
+                    {
+                        CalcSpeed(-acc);
+                    }
                 }
 
                 if (lookingRight)
@@ -247,6 +280,7 @@ public class RoboFloatv2 : MonoBehaviour
         Vector3 myScale = transform.localScale;
         myScale.x *= -1;
         transform.localScale = myScale;
-        rayCastOffSetX *= -1;
+        rayCastOffSetX1 *= -1;
+        rayCastOffSetX2 *= -1;
     }
 }
