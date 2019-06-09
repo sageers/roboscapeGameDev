@@ -9,6 +9,7 @@ TagManager:
   - scientist
   - robot
   - PathPoint
+  - CameraTransition
   layers:
   - Default
   - TransparentFX
