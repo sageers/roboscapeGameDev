@@ -12,6 +12,13 @@ public class FollowChracter : MonoBehaviour
     //hälfte des Kamera-Blickfeldes in X-/Y-Richtung, bzw. range bis zur Barriere, an der sich die Kamera anfängt, zu verschieben
     public float cameraRangeX;
     public float cameraRangeY;
+
+    //So weit können beide von einander entfernt stehen
+    static float invisibleWall = 11.5f;
+    static Vector2 profVec;
+    static Vector2 roboVec;
+
+
     float x;
     float y;
     float z;
@@ -64,8 +71,8 @@ public class FollowChracter : MonoBehaviour
 
     void Update()
     {
-
-
+        profVec = prof.transform.position;
+        roboVec = robo.transform.position;
 
         if (freeCamera)
         {
@@ -204,4 +211,34 @@ public class FollowChracter : MonoBehaviour
         camera.transform.position = new Vector3(x,y,z);
 
     }
+
+    //Check für Invisible Wall: 
+    //Wenn Spieler zu weit links -> return -1
+    //Wenn Spieler zu weit rechts -> return 1
+    //else -> return 0
+    public static int WallProf()
+    {
+        if (Vector2.Distance(profVec, roboVec) >= invisibleWall)
+        {
+            if (profVec.x < roboVec.x)
+                return -1;
+            else
+                return 1;
+        }
+        else
+            return 0;
+    }
+    public static int WallRobo()
+    {
+        if (Vector2.Distance(profVec, roboVec) >= invisibleWall)
+        {
+            if (profVec.x < roboVec.x)
+                return 1;
+            else
+                return -1;
+        }
+        else
+            return 0;
+    }
+
 }

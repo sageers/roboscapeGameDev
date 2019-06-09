@@ -16,9 +16,7 @@ public class RobotControllerLucas : MonoBehaviour
     private Animator anim;
     private bool isGrounded = false;
     private bool jump = false;
-    // Start is called before the first frame update
 
-    //Lucas Kram:***************************************
     public enum states { normal, greifArm };
     static int state = (int)states.normal;
     public static int roboterState
@@ -26,7 +24,6 @@ public class RobotControllerLucas : MonoBehaviour
         get { return state; }
         set { state = value; }
     }
-    //******************************************************
     
 
     void Start()
@@ -36,29 +33,23 @@ public class RobotControllerLucas : MonoBehaviour
 
     }
 
-    // Update is called once per frame
     void Update()
     {
-       /** if (Input.GetButtonDown("JumpTast1") && isGrounded)
-        {
-            jump = true;
-        }
-        if (Input.GetButtonDown("JumpPad1") && isGrounded)
-        {
-            jump = true;
-        }
 
-    **/
     }
 
     void FixedUpdate()
     {
-        if (state == (int)states.normal)// <- Lucas if-case***********************************
+        if (state == (int)states.normal)
         {
-            //float hor = Input.GetAxis("Horizontal1");
             float hor = Input.GetAxis("Horizontal2");
             anim.SetFloat("Speed", Mathf.Abs(hor));
-            rb2d.velocity = new Vector2(hor * maxSpeed, rb2d.velocity.y);
+
+            int invisibleWall = FollowChracter.WallRobo();
+            if (!(hor < 0 && invisibleWall < 0) && !(hor > 0 && invisibleWall > 0))
+                rb2d.velocity = new Vector2(hor * maxSpeed, rb2d.velocity.y);
+            else
+                rb2d.velocity = new Vector2(0, rb2d.velocity.y);
 
             isGrounded = Physics2D.OverlapCircle(groundCheck.position, 0.15f, whatIsGround);
             anim.SetBool("isGrounded", isGrounded);
@@ -73,7 +64,7 @@ public class RobotControllerLucas : MonoBehaviour
                 rb2d.AddForce(new Vector2(0, jumpForce));
                 jump = false;
             }
-        }// ¯\_( ͡ᵔ ͜ʖ ͡ᵔ ) Lucas Klammer zu *****************************
+        }
     }
 
     public void Flip()

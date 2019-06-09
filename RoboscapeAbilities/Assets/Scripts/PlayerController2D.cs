@@ -8,6 +8,11 @@ public class PlayerController2D: MonoBehaviour
     public float speed = 0.05f;
     public float jumpHeight;
 
+    enum Jump_modes { standing, jumping, falling}
+    int jumpingMode = (int)Jump_modes.standing;
+    int jumpCount = 0;
+    int jumpCountMax = 40;
+
     private float direction;
     private float posx;
 
@@ -20,23 +25,32 @@ public class PlayerController2D: MonoBehaviour
     }
     void FixedUpdate()
     {
-        //Store the current horizontal input in the float moveHorizontal.
         float moveHorizontal = Input.GetAxis("Horizontal");
-        //float moveVertical = Input.GetAxis("Vertical");
-
         
-        
+        int invisibleWall = FollowChracter.WallProf();
+        if (!(moveHorizontal < 0 && invisibleWall < 0) && !(moveHorizontal > 0 && invisibleWall > 0))
+            gameObject.transform.Translate(moveHorizontal * speed, 0, 0.0f);
 
-        //Call the AddForce function of our Rigidbody2D rb2d supplying movement multiplied by speed to move our player.
-        //rb2d.AddForce(movement * speed);
-        gameObject.transform.Translate(moveHorizontal * speed, 0, 0.0f);
 
-        if (Input.GetButton("Jump"))
+        if (Input.GetButtonDown("Jump"))
         {
-            gameObject.transform.Translate(moveHorizontal * speed, jumpHeight, 0.0f);
-            
+            if(jumpingMode == (int)Jump_modes.standing)
+            {
+                jumpingMode = (int)Jump_modes.jumping;
+            }
+        }
+        if(jumpingMode == (int)Jump_modes.jumping)
+        {
+            gameObject.transform.Translate(0, jumpHeight, 0.0f);
+            jumpCount++;
+            if (jumpCount >= jumpCountMax)
+            {
+                jumpCount = 0;
+                jumpingMode = (int)Jump_modes.falling;
+            }
         }
 
+        //Prof. drehen
         if (transform.position.x < posx)
         {
             transform.localScale = new Vector2(-direction, transform.localScale.y);
@@ -54,10 +68,22 @@ public class PlayerController2D: MonoBehaviour
         
     }
 
-    // called when the cube hits the floor
     void OnCollisionEnter2D(Collision2D col)
     {
-       // Debug.Log("OnCollisionEnter2D");
+        if (jumpingMode == (int)Jump_modes.jumping)
+        {
+            if (col.gameObject.tag == "Ceiling")
+            {
+                jumpingMode = (int)Jump_modes.falling;
+            }
+        }
+        else if(jumpingMode == (int)Jump_modes.falling)
+        {
+            if (col.gameObject.tag == "Floor" || col.gameObject.tag == "robot")
+            {
+                jumpingMode = (int)Jump_modes.standing;
+            }
+        }
     }
 
     
