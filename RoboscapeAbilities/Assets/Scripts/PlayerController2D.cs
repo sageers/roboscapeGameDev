@@ -5,26 +5,34 @@ using UnityEngine;
 
 public class PlayerController2D: MonoBehaviour
 {
+    //Von Lucas Trübisch
+
+    public GameObject Prof;
+
     public float speed = 0.05f;
     public float jumpHeight;
 
     enum Jump_modes { standing, jumping, falling}
     int jumpingMode = (int)Jump_modes.standing;
     int jumpCount = 0;
-    int jumpCountMax = 40;
+    const int jumpCountMax = 40;
 
     private float direction;
-    private float posx;
+    private bool faceRight = true;
+
+    private float profY_old;
+    private bool storedJump = false;
 
     void Start()
     {
 
         direction = transform.localScale.x;
-        posx = transform.position.x;
+        profY_old = Prof.transform.position.y;
 
     }
     void FixedUpdate()
     {
+        //Rechts/Links Bewegung durch unsichtbare Wand begrenzen
         float moveHorizontal = Input.GetAxis("Horizontal");
         
         int invisibleWall = FollowChracter.WallProf();
@@ -32,13 +40,28 @@ public class PlayerController2D: MonoBehaviour
             gameObject.transform.Translate(moveHorizontal * speed, 0, 0.0f);
 
 
+
+        //Springen und Landen
+
+        //Spieler-Eingabe "Jump"
         if (Input.GetButtonDown("Jump"))
         {
             if(jumpingMode == (int)Jump_modes.standing)
             {
                 jumpingMode = (int)Jump_modes.jumping;
+                jumpCount = 0;
             }
+            else if (jumpingMode == (int)Jump_modes.falling)
+                storedJump = true;
         }
+        if(jumpingMode == (int)Jump_modes.standing && storedJump)
+        {
+            storedJump = false;
+            jumpingMode = (int)Jump_modes.jumping;
+            jumpCount = 0;
+        }
+
+        //Jump-Translation
         if(jumpingMode == (int)Jump_modes.jumping)
         {
             gameObject.transform.Translate(0, jumpHeight, 0.0f);
@@ -50,41 +73,28 @@ public class PlayerController2D: MonoBehaviour
             }
         }
 
-        //Prof. drehen
-        if (transform.position.x < posx)
+        //Update des Spring-Modus
+        if (jumpingMode == (int)Jump_modes.jumping && Prof.transform.position.y <= profY_old)
+            jumpingMode = (int)Jump_modes.falling;
+        else if(jumpingMode == (int)Jump_modes.falling && Prof.transform.position.y >= profY_old)
+            jumpingMode = (int)Jump_modes.standing;
+
+        profY_old = Prof.transform.position.y;
+
+
+
+        //Prof. in Gehrichtung drehen
+        if(moveHorizontal < 0 && faceRight)
         {
             transform.localScale = new Vector2(-direction, transform.localScale.y);
-            
+            faceRight = false;
         }
-        else if(transform.position.x > posx){
-
+        else if(moveHorizontal > 0 && !faceRight)
+        {
             transform.localScale = new Vector2(direction, transform.localScale.y);
-
-
+            faceRight = true;
         }
-
-
-        posx = transform.position.x;
         
     }
 
-    void OnCollisionEnter2D(Collision2D col)
-    {
-        if (jumpingMode == (int)Jump_modes.jumping)
-        {
-            if (col.gameObject.tag == "Ceiling")
-            {
-                jumpingMode = (int)Jump_modes.falling;
-            }
-        }
-        else if(jumpingMode == (int)Jump_modes.falling)
-        {
-            if (col.gameObject.tag == "Floor" || col.gameObject.tag == "robot")
-            {
-                jumpingMode = (int)Jump_modes.standing;
-            }
-        }
-    }
-
-    
 }
