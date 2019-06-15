@@ -23,15 +23,26 @@ public class PlayerController2D: MonoBehaviour
     private float profY_old;
     private bool storedJump = false;
 
+    static bool lockMovement = true;
+    public static bool lockMovementProf
+    {
+        get { return lockMovement; }
+        set { lockMovement = value; }
+    }
+
     void Start()
     {
-
         direction = transform.localScale.x;
         profY_old = Prof.transform.position.y;
-
+        lockMovement = true;
     }
+
     void FixedUpdate()
     {
+        if (lockMovement)
+            return;
+
+
         //Rechts/Links Bewegung durch unsichtbare Wand begrenzen
         float moveHorizontal = Input.GetAxis("Horizontal");
         

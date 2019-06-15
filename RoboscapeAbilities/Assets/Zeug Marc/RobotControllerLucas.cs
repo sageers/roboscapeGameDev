@@ -24,22 +24,28 @@ public class RobotControllerLucas : MonoBehaviour
         get { return state; }
         set { state = value; }
     }
-    
+
+    static bool lockMovement = true;
+    public static bool lockMovementRobo
+    {
+        get { return lockMovement; }
+        set { lockMovement = value; }
+    }
+
 
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-
-    }
-
-    void Update()
-    {
-
+        lockMovement = true;
     }
 
     void FixedUpdate()
     {
+        if (lockMovement)
+            return;
+
+
         if (state == (int)states.normal)
         {
             float hor = Input.GetAxis("Horizontal2");

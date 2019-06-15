@@ -18,10 +18,18 @@ public class FollowChracter : MonoBehaviour
     static Vector2 profVec;
     static Vector2 roboVec;
 
+    public SpriteRenderer FadeIn;
 
-    float x;
-    float y;
-    float z;
+
+    static float x;
+    static float y;
+    static float z;
+
+    public static void setXY(Vector2 xy)
+    {
+        x = xy.x;
+        y = xy.y;
+    }
 
     int level = 0;
 
@@ -30,16 +38,31 @@ public class FollowChracter : MonoBehaviour
 
     float level1_offsetY = 2;
 
-    bool freeCamera = true;
+    static bool freeCamera = false;
+    public static void lockCamera()
+    {
+        freeCamera = false;
+    }
+
     GameObject[] CameraTransitions;
     GameObject[] CameraTargets;
     GameObject[] ResetTransitions;
     enum trans_modes {non, doing, done };
     int[] translationMode;
-    int currentTransition = -1;
+    static int currentTransition = -2;
+    public static void setElevatorTransition()
+    {
+        currentTransition = -2;
+    }
+
+    int fadeInCounter = 0;
 
     void Start()
     {
+        freeCamera = false;
+        fadeInCounter = 0;
+        currentTransition = -2;
+
         x = camera.transform.position.x;
         y = camera.transform.position.y;
         z = camera.transform.position.z;
@@ -170,27 +193,42 @@ public class FollowChracter : MonoBehaviour
                 y = prof.transform.position.y - cameraRangeY;*/
 
         }
+        if(!freeCamera && fadeInCounter < 40)
+        {
+            FadeIn.color -= new Color(0, 0, 0, 0.025f);
+            if(fadeInCounter == 39)
+            {
+                freeCamera = true;
+                PlayerController2D.lockMovementProf = false;
+                RobotControllerLucas.lockMovementRobo = false;
+            }
+            fadeInCounter++;
+        }
 
     Transition:
-        if (!freeCamera) {
+        if (!freeCamera && currentTransition >= 0) {
             if (Vector2.Distance(camera.transform.position, CameraTargets[currentTransition].transform.position) > 0.2f)
             {
-                float x_ = camera.transform.position.x - CameraTargets[currentTransition].transform.position.x;
-                float y_ = camera.transform.position.y - CameraTargets[currentTransition].transform.position.y;
                 if (allowTransitionsX)
                 {
+                    float x_ = camera.transform.position.x - CameraTargets[currentTransition].transform.position.x;
                     if (x_ > 0.2f)
                         x = camera.transform.position.x - 0.1f;
-                    else if (x < 0.2f)
+                    else if (x_ < 0.2f)
                         x = camera.transform.position.x + 0.1f;
                 }
                 if (allowTransitionsY)
                 {
+                    float y_ = camera.transform.position.y - CameraTargets[currentTransition].transform.position.y;
                     if (y_ > 0.2f)
                         y = camera.transform.position.y - 0.1f;
-                    else if (y < 0.2f)
+                    else if (y_ < 0.2f)
                         y = camera.transform.position.y + 0.1f;
                 }
+                /*if (level == 1 && CameraTargets[currentTransition].name == "CameraTarget3")
+                {
+
+                }*/
             }
             else
             {

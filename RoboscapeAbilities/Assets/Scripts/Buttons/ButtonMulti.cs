@@ -16,8 +16,8 @@ public class ButtonMulti : MonoBehaviour
     public BoxCollider2D ProfCollider;
 
     string name;
-    char groupe;
-    char number;
+    int groupe;
+    int number;
 
     int translateButton = 0;
 
@@ -29,19 +29,16 @@ public class ButtonMulti : MonoBehaviour
         groupe = name_char[name_char.Length - 3];
         number = name_char[name_char.Length - 1];
 
-        string aaaa = name + "  " + groupe +"   " +number;
-        Debug.Log(aaaa);
+        pressed = false;
+        pressedOld = false;
+        allPressed = false;
     }
 
     private void Update()
     {
+        allPressed = ButtonManagerScript.stateButtonMulti1();
         if (allPressed)
             pressed = true;
-        else if (groupe == 1 && ButtonManagerScript.stateButtonMulti1())
-        {
-            allPressed = true;
-        }
-        
 
         if (pressed && translateButton < 15)
         {
@@ -61,8 +58,6 @@ public class ButtonMulti : MonoBehaviour
             pressedOld = pressed;
             ButtonManagerScript.ButtonChange(name, pressed);
         }
-
-        //Debug.Log("Button" + number + ":  " + pressed +", " + allPressed);
     }
 
     void OnTriggerStay2D(Collider2D col1)

@@ -39,15 +39,24 @@ public class ButtonManagerScript : MonoBehaviour
     static bool stateButtonMulti1_both = false;
     public static bool stateButtonMulti1()
     {
-        Debug.Log(stateButtonMulti1_0 +"  "+ stateButtonMulti1_1);
-        if (stateButtonMulti1_0 && stateButtonMulti1_1)
+        if (stateButtonMulti1_both)
+            return true;
+        else if (stateButtonMulti1_0 && stateButtonMulti1_1)
         {
             stateButtonMulti1_both = true;
             return true;
-        }
-            
+        }  
         else
             return false;
+    }
+
+    private void Start()
+    {
+        stateButtonPerma1 = false;
+        gate4_moved = 0;
+        stateButtonMulti1_0 = false;
+        stateButtonMulti1_1 = false;
+        stateButtonMulti1_both = false;
     }
 
 
@@ -170,6 +179,10 @@ public class ButtonManagerScript : MonoBehaviour
                 gate4_moved++;
             }
         }
+
+        //Elevator
+        if (stateButtonMulti1_both)
+            ElevatorScript.setActive();
     }
 
     public static void ButtonChange(string button, bool state)
