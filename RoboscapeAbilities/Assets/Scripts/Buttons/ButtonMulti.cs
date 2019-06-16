@@ -5,6 +5,7 @@ using System;
 
 public class ButtonMulti : MonoBehaviour
 {
+    //Von Lucas Trübisch
 
     public GameObject Button;
     protected bool pressed = false;

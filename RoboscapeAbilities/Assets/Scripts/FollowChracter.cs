@@ -20,6 +20,8 @@ public class FollowChracter : MonoBehaviour
 
     public SpriteRenderer FadeIn;
 
+    public GameObject CamStartPoint;
+
 
     static float x;
     static float y;
@@ -37,6 +39,7 @@ public class FollowChracter : MonoBehaviour
     bool allowTransitionsY = true;
 
     float level1_offsetY = 2;
+    float level2_offsetY = 2;
 
     static bool freeCamera = false;
     public static void lockCamera()
@@ -56,6 +59,7 @@ public class FollowChracter : MonoBehaviour
     }
 
     int fadeInCounter = 0;
+    int[] fadeInLength = {40,120 };//Fade-In-Länge in Abhängigkeit vom Level
 
     void Start()
     {
@@ -71,6 +75,12 @@ public class FollowChracter : MonoBehaviour
             level = 1;
             allowTransitionsY = false;
             y = (prof.transform.position.y + robo.transform.position.y) / 2 + level1_offsetY;
+        }
+        else if(SceneManager.GetActiveScene().name == "Level2")
+        {
+            level = 2;
+            allowTransitionsY = false;
+            y = CamStartPoint.transform.position.y;
         }
             
 
@@ -193,10 +203,10 @@ public class FollowChracter : MonoBehaviour
                 y = prof.transform.position.y - cameraRangeY;*/
 
         }
-        if(!freeCamera && fadeInCounter < 40)
+        if(!freeCamera && fadeInCounter < fadeInLength[level-1])
         {
             FadeIn.color -= new Color(0, 0, 0, 0.025f);
-            if(fadeInCounter == 39)
+            if(fadeInCounter == fadeInLength[level - 1] -1)
             {
                 freeCamera = true;
                 PlayerController2D.lockMovementProf = false;
@@ -225,10 +235,6 @@ public class FollowChracter : MonoBehaviour
                     else if (y_ < 0.2f)
                         y = camera.transform.position.y + 0.1f;
                 }
-                /*if (level == 1 && CameraTargets[currentTransition].name == "CameraTarget3")
-                {
-
-                }*/
             }
             else
             {
@@ -238,14 +244,20 @@ public class FollowChracter : MonoBehaviour
                 
             }
         }
+
+
         if(level == 1)
         {
             
-        }
+        }else if(level == 2)
+        {
 
+        }
         else 
             y = (prof.transform.position.y + robo.transform.position.y) / 2;
         
+
+
         camera.transform.position = new Vector3(x,y,z);
 
     }

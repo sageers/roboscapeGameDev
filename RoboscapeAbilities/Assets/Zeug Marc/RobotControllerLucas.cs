@@ -6,15 +6,15 @@ public class RobotControllerLucas : MonoBehaviour
 {
     public float maxSpeed = 4;
     public float jumpForce = 200;
-    public Transform groundCheck;
-    public LayerMask whatIsGround;
+    //public Transform groundCheck;
+    //public LayerMask whatIsGround;
 
     [HideInInspector]
     public bool lookingRight = true;
 
     private Rigidbody2D rb2d;
-    private Animator anim;
-    private bool isGrounded = false;
+    //private Animator anim;
+    //private bool isGrounded = false;
     private bool jump = false;
 
     public enum states { normal, greifArm };
@@ -36,7 +36,7 @@ public class RobotControllerLucas : MonoBehaviour
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
-        anim = GetComponent<Animator>();
+        //anim = GetComponent<Animator>();
         lockMovement = true;
     }
 
@@ -49,7 +49,7 @@ public class RobotControllerLucas : MonoBehaviour
         if (state == (int)states.normal)
         {
             float hor = Input.GetAxis("Horizontal2");
-            anim.SetFloat("Speed", Mathf.Abs(hor));
+            //anim.SetFloat("Speed", Mathf.Abs(hor));
 
             int invisibleWall = FollowChracter.WallRobo();
             if (!(hor < 0 && invisibleWall < 0) && !(hor > 0 && invisibleWall > 0))
@@ -57,8 +57,8 @@ public class RobotControllerLucas : MonoBehaviour
             else
                 rb2d.velocity = new Vector2(0, rb2d.velocity.y);
 
-            isGrounded = Physics2D.OverlapCircle(groundCheck.position, 0.15f, whatIsGround);
-            anim.SetBool("isGrounded", isGrounded);
+            //isGrounded = Physics2D.OverlapCircle(groundCheck.position, 0.15f, whatIsGround);
+            //anim.SetBool("isGrounded", isGrounded);
 
             if ((hor > 0 && !lookingRight) || (hor < 0 && lookingRight))
             {

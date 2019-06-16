@@ -22,6 +22,8 @@ public class ElevatorScript : MonoBehaviour
         activated = true;
     }
 
+    int level = 0;
+
     int counter = 0;
     Vector2 camInit;
     Vector2 stepCamTransit;
@@ -30,6 +32,9 @@ public class ElevatorScript : MonoBehaviour
 
     private void Start()
     {
+        char[] level_char = SceneManager.GetActiveScene().name.ToCharArray();
+        level = (int)char.GetNumericValue(level_char[level_char.Length - 1]);
+
         activated = false;
         counter = 0;
         jiggle = 0;
@@ -57,18 +62,18 @@ public class ElevatorScript : MonoBehaviour
                 Vector2 CamFocus2D = CamFocus.transform.position;
                 stepCamTransit = (CamFocus2D - camInit) / 60f;
             }
-                
+
             else if (counter > 110 && counter <= 170)
             {
                 Vector2 newCamPosition = (Vector2)Cam.transform.position + stepCamTransit;
                 FollowChracter.setXY(newCamPosition);
             }
-            else if(counter > 180 && counter < 330)
+            else if (counter > 180 && counter < 330)
             {
-                Vector3 jurney = new Vector3(0,0.1f,0);
+                Vector3 jurney = new Vector3(0, 0.1f, 0);
                 if (jiggle == 3)
                     jurney.y = 0.15f;
-                if(jiggle == 4)
+                if (jiggle == 4)
                 {
                     jurney.y = 0.05f;
                     jiggle = -1;
@@ -78,15 +83,20 @@ public class ElevatorScript : MonoBehaviour
                 Prof.transform.Translate(jurney);
                 Robo.transform.Translate(jurney);
 
-                if(counter <= 270)
-                    FollowChracter.setXY((Vector2)Cam.transform.position + new Vector2(0,0.1f));
+                if (counter <= 270)
+                    FollowChracter.setXY((Vector2)Cam.transform.position + new Vector2(0, 0.1f));
             }
-            else if(counter > 350 && counter <= 390)
+            else if (counter > 350 && counter <= 390)
             {
-                FadeOut.color += new Color(0,0,0,0.025f);
+                FadeOut.color += new Color(0, 0, 0, 0.025f);
             }
-            else if(counter == 391)
-                SceneManager.LoadScene("Level1", LoadSceneMode.Single);
+            else if (counter == 391)
+            {
+                if(level == 1)
+                    SceneManager.LoadScene("Level2", LoadSceneMode.Single);
+                else
+                    SceneManager.LoadScene("Level1", LoadSceneMode.Single);
+            }
             counter++;
         }
     }
