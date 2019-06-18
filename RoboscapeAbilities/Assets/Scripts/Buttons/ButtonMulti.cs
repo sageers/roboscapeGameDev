@@ -28,8 +28,8 @@ public class ButtonMulti : MonoBehaviour
         spriteRend = GetComponent<SpriteRenderer>();
         name = Button.name;
         char[] name_char = name.ToCharArray();
-        groupe = name_char[name_char.Length - 3];
-        number = name_char[name_char.Length - 1];
+        groupe = (int)char.GetNumericValue(name_char[name_char.Length - 3]);
+        number = (int)char.GetNumericValue(name_char[name_char.Length - 1]);
 
         pressed = false;
         pressedOld = false;
@@ -38,7 +38,11 @@ public class ButtonMulti : MonoBehaviour
 
     private void Update()
     {
-        allPressed = ButtonManagerScript.stateButtonMulti2();
+        if(groupe == 1)
+            allPressed = ButtonManagerScript.stateButtonMulti1();
+        else if(groupe == 2)
+            allPressed = ButtonManagerScript.stateButtonMulti2();
+
         if (allPressed)
         {
             pressed = true;
