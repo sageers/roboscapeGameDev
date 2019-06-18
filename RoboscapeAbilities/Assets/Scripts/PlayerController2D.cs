@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PlayerController2D: MonoBehaviour
 {
-    //Von Lucas Trübisch
+    //Von Lucas Trübisch und Sarah Sörries
 
     public GameObject Prof;
 

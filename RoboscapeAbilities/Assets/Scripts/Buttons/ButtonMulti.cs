@@ -15,6 +15,7 @@ public class ButtonMulti : MonoBehaviour
     protected SpriteRenderer spriteRend;
     public BoxCollider2D RobotCollider;
     public BoxCollider2D ProfCollider;
+    public BoxCollider2D BoxCollider;
 
     string name;
     int groupe;
@@ -37,9 +38,11 @@ public class ButtonMulti : MonoBehaviour
 
     private void Update()
     {
-        allPressed = ButtonManagerScript.stateButtonMulti1();
+        allPressed = ButtonManagerScript.stateButtonMulti2();
         if (allPressed)
+        {
             pressed = true;
+        }
 
         if (pressed && translateButton < 15)
         {
@@ -65,7 +68,7 @@ public class ButtonMulti : MonoBehaviour
     {
         if (allPressed)
             return;
-        if (col1 == RobotCollider || col1 == ProfCollider)
+        if (col1 == RobotCollider || col1 == ProfCollider || col1 == BoxCollider)
         {
             if (!pressed && Math.Abs(col1.transform.position.x - Button.transform.position.x) < 0.3)
             {
@@ -85,7 +88,7 @@ public class ButtonMulti : MonoBehaviour
     {
         if (allPressed)
             return;
-        if (col2 != RobotCollider || col2 == ProfCollider)
+        if (col2 != RobotCollider || col2 == ProfCollider || col2 == BoxCollider)
         {
             spriteRend.color = Color.white;
             pressed = false;

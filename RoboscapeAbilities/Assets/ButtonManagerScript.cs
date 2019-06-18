@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class ButtonManagerScript : MonoBehaviour
 {
+    //Von Lucas Trübisch
+
     static int level = 0;
 
     public GameObject Prof;
@@ -53,6 +55,7 @@ public class ButtonManagerScript : MonoBehaviour
 
 
     //Level2
+    public GameObject Ramp;
 
     static bool stateButtonMulti2_0 = false;
     static bool stateButtonMulti2_1 = false;
@@ -70,6 +73,8 @@ public class ButtonManagerScript : MonoBehaviour
         else
             return false;
     }
+    int rampMovedUp = 0;
+
 
     private void Start()
     {
@@ -227,6 +232,25 @@ public class ButtonManagerScript : MonoBehaviour
             //Elevator
             if (stateButtonMulti2_all)
                 ElevatorScript.setActive();
+
+            //Ramp
+            if (stateButton1)
+            {
+                if(rampMovedUp < 40)
+                {
+                    rampMovedUp++;
+                    Ramp.transform.eulerAngles = new Vector3(0, 0, (float)rampMovedUp/4*3);
+                }
+                
+            }
+            else
+            {
+                if (rampMovedUp > 0)
+                {
+                    rampMovedUp--;
+                    Ramp.transform.eulerAngles = new Vector3(0, 0, (float)rampMovedUp / 4 * 3);
+                }
+            }
         }
     }
 
@@ -261,6 +285,8 @@ public class ButtonManagerScript : MonoBehaviour
                 stateButtonMulti2_1 = state;
             else if (button == "ButtonMulti2_2")
                 stateButtonMulti2_2 = state;
+            else if (button == "Button1")
+                stateButton1 = state;
         }
     }
 

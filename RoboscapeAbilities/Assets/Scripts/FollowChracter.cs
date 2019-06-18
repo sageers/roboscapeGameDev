@@ -6,6 +6,8 @@ using System;
 
 public class FollowChracter : MonoBehaviour
 {
+    //Von Lucas Trübisch
+
     new public GameObject camera;
     public GameObject prof;
     public GameObject robo;

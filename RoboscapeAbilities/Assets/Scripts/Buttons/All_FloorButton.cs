@@ -5,6 +5,8 @@ using System;
 
 public class All_FloorButton : MonoBehaviour
 {
+    //Von Lucas Trübisch und Sarah Sörries
+
     public GameObject Button;
     protected bool pressed = false;
     bool pressedOld = false;

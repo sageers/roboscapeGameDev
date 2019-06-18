@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class RobotControllerLucas : MonoBehaviour
 {
+    //Von Lucas Trübisch und Marc Pilates
+
     public float maxSpeed = 4;
     public float jumpForce = 200;
     //public Transform groundCheck;
     //public LayerMask whatIsGround;
 
     [HideInInspector]
-    public bool lookingRight = true;
+    public static bool lookingRight = true;
 
     private Rigidbody2D rb2d;
     //private Animator anim;
@@ -35,6 +37,7 @@ public class RobotControllerLucas : MonoBehaviour
 
     void Start()
     {
+        lookingRight = true;
         rb2d = GetComponent<Rigidbody2D>();
         //anim = GetComponent<Animator>();
         lockMovement = true;
