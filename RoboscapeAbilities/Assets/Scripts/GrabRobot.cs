@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GrabRobot : MonoBehaviour
 {
-    //https://www.youtube.com/watch?v=SoBdvBTZqhw
+    //Von Sarah Sörries
 
     public bool grabbed;
     public float distance = 2f;

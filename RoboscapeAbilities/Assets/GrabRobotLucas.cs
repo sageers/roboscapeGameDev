@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GrabRobotLucas : MonoBehaviour
 {
-    //https://www.youtube.com/watch?v=SoBdvBTZqhw
+    //Von Sarah Sörries und Lucas Trübisch
 
     public bool grabbed;
     public float distance = 2f;
@@ -13,42 +13,29 @@ public class GrabRobotLucas : MonoBehaviour
     public Transform holdPoint;
     public bool extraStrength = false;
 
-    //Lucas Kram: **********************************
     static int grabbedObject = -1;
     public static int getGrabbedObject
     {
         get{ return grabbedObject; }
     }
-    //***********************************************
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
     void Update()
     {
 
-        //If something should be grabbed you have to press the right mous button
         if (Input.GetButtonDown("Fire1"))
         {
 
-            //First check if the Player is already grabbing sth
 
             if (!grabbed)
             {
-                //if nothing is grabbed start a raycast from playerposition towards the direction the player is facing
                 Physics2D.queriesStartInColliders = false;
                 hit = Physics2D.Raycast(transform.position, Vector2.right * transform.localScale.x, distance);
 
-                //if the raycast hits a collider and the collider is marked as grabbable grab it
                 if (hit.collider != null && hit.collider.tag == "grabbable")
                 {
                     //check the mass of the object
-                    //normal scientist can move anything with mass <= 1
-                    //steroid scientist can move anything with mass <= 5
+                    //normal robot can move anything with mass <= 1
+                    //strong robot can move anything with mass <= 5
                     float grabbableMass = 1f;
 
                     if (extraStrength)
@@ -79,7 +66,6 @@ public class GrabRobotLucas : MonoBehaviour
             }
         }
 
-        //Lucas Kram: Der Großteil dieses if-cases ist neu ************
         if (grabbed)
         {
             hit.collider.gameObject.transform.position = holdPoint.position;
@@ -89,7 +75,6 @@ public class GrabRobotLucas : MonoBehaviour
         {
             grabbedObject = -1;
         }
-        //****************************************************************
     }
 
     void OnDrawGizmos()

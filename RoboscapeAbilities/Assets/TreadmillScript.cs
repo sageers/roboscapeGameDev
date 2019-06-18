@@ -36,6 +36,11 @@ public class TreadmillScript : MonoBehaviour
 
     Vector3 millCablePosition;
 
+    static bool profUnderPlatform = false;
+    public static bool ProfUnderPlatform {
+        set { profUnderPlatform = value; }
+    }
+
     void Start()
     {
         CogsTop = GameObject.FindGameObjectsWithTag("CogTop");
@@ -80,6 +85,7 @@ public class TreadmillScript : MonoBehaviour
                     Flip();
 
                 RobotControllerLucas.lockMovementRobo = true;
+
                 visualUpdateCounter++;
                 if(visualUpdateCounter == visualUpdateFrequency)
                 {
@@ -100,19 +106,23 @@ public class TreadmillScript : MonoBehaviour
                     Flip();
 
                 RobotControllerLucas.lockMovementRobo = true;
-                visualUpdateCounter++;
-                if (visualUpdateCounter == visualUpdateFrequency)
+
+                if (!profUnderPlatform)
                 {
-                    visualUpdateCounter = 0;
-                    CogCounter--;
-                    if (CogCounter < 0)
-                        CogCounter = 2;
-                    TranslateCogs();
+                    visualUpdateCounter++;
+                    if (visualUpdateCounter == visualUpdateFrequency)
+                    {
+                        visualUpdateCounter = 0;
+                        CogCounter--;
+                        if (CogCounter < 0)
+                            CogCounter = 2;
+                        TranslateCogs();
+                    }
+                    ropeCounter--;
+                    MillCable.transform.position = millCablePosition + new Vector3(0, (float)ropeCounter / 50f, 0);
+                    RopeCable.transform.position = (RopeCableP1.transform.position + RopeCableP2.transform.position) / 2;
+                    RopeCable.transform.localScale = new Vector3(0.3f, Vector2.Distance(RopeCableP1.transform.position, RopeCableP2.transform.position) * 2.2f, 1);
                 }
-                ropeCounter--;
-                MillCable.transform.position = millCablePosition + new Vector3(0, (float)ropeCounter / 50f, 0);
-                RopeCable.transform.position = (RopeCableP1.transform.position + RopeCableP2.transform.position) / 2;
-                RopeCable.transform.localScale = new Vector3(0.3f, Vector2.Distance(RopeCableP1.transform.position, RopeCableP2.transform.position)*2.2f,1);
             }
             else
                 RobotControllerLucas.lockMovementRobo = false;
